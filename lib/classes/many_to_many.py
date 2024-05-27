@@ -4,15 +4,29 @@ class Article:
         self.magazine = magazine
         self.title = title
         
+author = Author("Carry Bradshaw")
+magazine = Magazine("Vogue", "Fashion")
+article_1 = Article(author, magazine, "How to wear a tutu with style")
+
+
+
 class Author:
     def __init__(self, name):
         self.name = name
 
     def articles(self):
-        pass
+        return Article.title()
 
     def magazines(self):
-        pass
+author_1 = Author("Carry Bradshaw")
+        magazine_1 = Magazine("Vogue", "Fashion")
+        magazine_2 = Magazine("AD", "Architecture")
+        magazine_3 = Magazine("GQ", "Fashion")
+        Article(author_1, magazine_1, "How to wear a tutu with style")
+        Article(author_1, magazine_2, "2023 Eccentric Design Trends")
+
+
+return magazines
 
     def add_article(self, magazine, title):
         pass
@@ -26,10 +40,10 @@ class Magazine:
         self.category = category
 
     def articles(self):
-        pass
+        return Author(magazines)
 
     def contributors(self):
-        pass
+        
 
     def article_titles(self):
         pass
