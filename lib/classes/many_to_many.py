@@ -1,32 +1,41 @@
 class Article:
     def __init__(self, author, magazine, title):
-        self.author = author
-        self.magazine = magazine
-        self.title = title
+        if isinstance(author, Author):
+            self.author = author
+        else:
+            raise ValueError("author must be an instance of Author")
+
+        if isinstance(magazine, Magazine):
+            self.magazine = magazine
+        else:
+            raise ValueError("magazine must be an instance of Magazine")
         
-author = Author("Carry Bradshaw")
-magazine = Magazine("Vogue", "Fashion")
-article_1 = Article(author, magazine, "How to wear a tutu with style")
+        if isinstance(title, str) and 5 <= len(title) <= 50:
+            self.title = title
+        else:
+            raise ValueError("Title must be a string between 5 and 50 characters")
 
-
+    def title(self):
+        return self._title
+ 
 
 class Author:
     def __init__(self, name):
-        self.name = name
+        if isinstance(name, str) and len(name) > 0:
+            self._name = name
+        else:
+            raise ValueError("Name must be a non-empty string")
+
+    def name(self):
+        return self._name
+
+    name = property(name)
 
     def articles(self):
-        return Article.title()
+        return [article for article in Article._all_articles if article.author == self]
 
     def magazines(self):
-author_1 = Author("Carry Bradshaw")
-        magazine_1 = Magazine("Vogue", "Fashion")
-        magazine_2 = Magazine("AD", "Architecture")
-        magazine_3 = Magazine("GQ", "Fashion")
-        Article(author_1, magazine_1, "How to wear a tutu with style")
-        Article(author_1, magazine_2, "2023 Eccentric Design Trends")
-
-
-return magazines
+        return list(set(article.magazine for article in self.articles()))
 
     def add_article(self, magazine, title):
         pass
@@ -36,17 +45,25 @@ return magazines
 
 class Magazine:
     def __init__(self, name, category):
-        self.name = name
-        self.category = category
+        if isinstance(name, str) and 2 <= len(name) <= 16:
+            self.name = name
+        else:
+            raise ValueError("Name must be a string between 2 and 16 characters")
 
+        if isinstance(category, str) and len(category) > 0:
+            self._category = category
+        else:
+            raise ValueError("Category must be a non-empty string")  
+        
     def articles(self):
-        return Author(magazines)
+        return [article for article in Article._all_articles if article.magazine == self]
 
     def contributors(self):
-        
+        return contributors
 
     def article_titles(self):
         pass
 
     def contributing_authors(self):
         pass
+
